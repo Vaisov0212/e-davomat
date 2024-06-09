@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::namespace('Admin')->name('admin.')->prefix('v-admin')->group(function(){
+    Route::get('/',[AdminController::class, 'index'])->name('dashboard');
 });
