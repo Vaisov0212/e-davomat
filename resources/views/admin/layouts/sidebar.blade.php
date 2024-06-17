@@ -3,7 +3,7 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="admin/images/faces/face1.jpg" alt="profile" />
+            <img src="{{asset('admin/images/faces/face1.jpg')}}" alt="profile" />
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>

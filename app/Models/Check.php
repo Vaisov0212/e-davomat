@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Check extends Model
 {
     use HasFactory;
-    protected  $table='schools';
+    public  $table='checks';
 
-    protected $filleble=[
+    public $fillable=[
          'deviceName',
          'deviceCode',
          'card_id'

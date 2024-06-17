@@ -13,21 +13,21 @@
 </div>
 <!-- container-scroller -->
 <!-- plugins:js -->
-<script src="admin/vendors/js/vendor.bundle.base.js"></script>
+<script src="{{asset('admin/vendors/js/vendor.bundle.base.js')}}"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
-<script src="admin/vendors/chart.js/chart.umd.js"></script>
-<script src="admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="{{asset('admin/vendors/chart.js/chart.umd.js')}}"></script>
+<script src="{{asset('admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <!-- End plugin js for this page -->
 <!-- inject:js -->
-<script src="admin/js/off-canvas.js"></script>
-<script src="admin/js/misc.js"></script>
-<script src="admin/js/settings.js"></script>
-<script src="admin/js/todolist.js"></script>
-<script src="admin/js/jquery.cookie.js"></script>
+<script src="{{asset('admin/js/off-canvas.js')}}"></script>
+<script src="{{asset('admin/js/misc.js')}}"></script>
+<script src="{{asset('admin/js/settings.jsv')}}"></script>
+<script src="{{asset('admin/js/todolist.js')}}"></script>
+<script src="{{asset('admin/js/jquery.cookie.js')}}"></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
-<script src="admin/js/dashboard.js"></script>
+<script src="{{asset('admin/js/dashboard.js')}}"></script>
 <!-- End custom js for this page -->
 </body>
 </html>
