@@ -14,7 +14,7 @@
               <h3 class="page-title">Guruh qo'shish</h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">guruhlar</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('admin.groups.index')}}">guruhlar</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Guruh qo'shish</li>
                 </ol>
               </nav>
@@ -28,7 +28,7 @@
                         @if(count($errors)>0)
                         <div class="alert alert-danger" >
                             <ul>
-                                @foreach ($errors->all as $error )
+                                @foreach ($errors->all() as $error )
                                     <li>{{$error}}</li>
                                 @endforeach
                             </ul>
@@ -40,34 +40,28 @@
                         </div>
                         @endif
 
-                    <form enctype="multipart/form-data" action="{{route('admin.student.store')}}" method="POST"  class="forms-sample">
+                    <form enctype="multipart/form-data" action="{{route('admin.groups.store')}}" method="POST"  class="forms-sample">
                         @method('POST')
                         @csrf
                       <div class="form-group">
                         <label for="exampleInputName1">Guruh nomi:</label>
-                        <input id="getUID"  name="card_id" type="text" class="form-control" placeholder="to'liq nom:">
+                        <input id="getUID"  name="name" type="text" class="form-control" placeholder="to'liq nom:">
 
                       </div>
                       <div class="form-group">
                         <label for="exampleInputName1">Kurs Narhi</label>
-                        <input name="studentName" type="text" class="form-control" id="exampleInputName1" placeholder="250 ming som:">
+                        <input name="money" type="text" class="form-control" id="exampleInputName1" placeholder="250 ming som:">
                       </div>
                       <div class="form-group">
                         <label for="exampleSelectGender">Mentor</label>
-                        <select name="genderType"  class="form-select" id="exampleSelectGender">
-                          <option value="Ayol">Ayol</option>
-                          <option value="Erkak">Erkak</option>
+                        <select name="teacher"  class="form-select" id="exampleSelectGender">
+                            @foreach ($teachers as $item )
+                            <option value="{{$item->id}}">{{$item->t_fish}}</option>
+                            @endforeach
                         </select>
                       </div>
-                      <div class="form-group">
-                        <label>Rasm</label>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">Sinf:</label>
-                        <input name="studentGroup" type="text" class="form-control" id="exampleInputName1" placeholder="Sinf:">
-                      </div>
-                      <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-                      <button class="btn btn-light">Cancel</button>
+                      <button type="submit" class="btn btn-gradient-primary me-2">yaratish</button>
+                      <button type="reset" class="btn btn-danger">tozalash</button>
                     </form>
                   </div>
                 </div>

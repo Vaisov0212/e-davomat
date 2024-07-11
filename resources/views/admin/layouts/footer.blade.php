@@ -10,7 +10,7 @@
 <!-- main-panel ends -->
 </div>
 <!-- page-body-wrapper ends -->
-</div>
+{{-- </div> --}}
 <!-- container-scroller -->
 <!-- plugins:js -->
 <script src="{{asset('admin/vendors/js/vendor.bundle.base.js')}}"></script>
@@ -22,12 +22,17 @@
 <!-- inject:js -->
 <script src="{{asset('admin/js/off-canvas.js')}}"></script>
 <script src="{{asset('admin/js/misc.js')}}"></script>
-<script src="{{asset('admin/js/settings.jsv')}}"></script>
+<script src="{{asset('admin/js/settings.js')}}"></script>
 <script src="{{asset('admin/js/todolist.js')}}"></script>
 <script src="{{asset('admin/js/jquery.cookie.js')}}"></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
-<script src="{{asset('admin/js/dashboard.js')}}"></script>
+{{-- <script src="{{asset('admin/js/dashboard.js')}}"></script> --}}
 <!-- End custom js for this page -->
+<script>
+$('.nav-link').click(function(){
+    $( '.nav-link').removeClass('active');
+    $(this).addClass('active');
+})</script>
 </body>
 </html>

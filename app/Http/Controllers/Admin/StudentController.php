@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
-
+use App\Models\Group;
+use App\Models\Courses;
+use DataTables;
 use Illuminate\Http\Request;
 
 
@@ -13,11 +15,25 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax())
+        {
+            $data = Student::select('*');
+            // dd($data);
+            return DataTables::of($data)
+            ->addColumn('action',function($data){
+                return '<form   action="'.route('admin.student.show', $data->id).'" enctype="multipart/form-data" method="get">
+                   <button type="submit" class="btn btn-light btn-sm">
+                    <i class="mdi mdi-eye text-primary"></i>
+                    </button>
+                    </form>';
 
-        // return view('admin.student.index');
-        return view('registration');
+            })->addIndexColumn()->make(true);
+        }
+
+        return view('admin.student.index');
+
 
     }
 
@@ -26,7 +42,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.student.create');
+        $groups=Group::all();
+        return view('admin.student.create',compact('groups'));
     }
 
     /**
@@ -38,19 +55,23 @@ class StudentController extends Controller
                 $this->validate($request,[
                         'card_id'=>'required',
                         'studentName'=>'required',
-                        // 'studentImg'=>'required',
+                        't_sana'=>'required',
                         'studentGroup'=>'required',
                          'genderType' =>'required'
                 ]);
 
+
                 $student= new Student([
                     'card_id' => $request->get('card_id'),
                     'studentFish'=> $request->get('studentName'),
-                    'studentImg'=>'1',
+                    'st_sana'=>$request->get('t_sana'),
                     'studentGroup'=>$request->get('studentGroup'),
-                     'genderType' =>$request->get('genderType'),
+                     'genderType' =>$request->get('genderType')
                 ]);
                 $student->save();
+                $g_id=$request->get('group_name');
+                $student->s_groups()->attach($g_id);
+
                 return redirect()->route('admin.student.create')->with('success',"malumot saqlandi");
     }
 
@@ -59,7 +80,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $student=Student::findOrFail($id);
+        return view('admin.student.s_show',compact('student'));
     }
 
     /**

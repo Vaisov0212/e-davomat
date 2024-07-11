@@ -59,8 +59,8 @@
                         @csrf
                       <div class="form-group">
                         <label for="exampleInputName1">Card ID</label>
-                        {{-- <input id="getUID"  name="card_id" type="text" class="form-control" placeholder="id"> --}}
-                        <textarea style="width: 200px" name="id" id="getUID" placeholder="PleaseD" rows="1" cols="1" required></textarea>
+                        <input id="getUID"  name="card_id" type="text" class="form-control" placeholder="id">
+                        {{-- <textarea style="width: 200px" name="id" id="getUID" placeholder="PleaseD" rows="1" cols="1" required></textarea> --}}
                       </div>
                       <div class="form-group">
                         <label for="exampleInputName1">F.I.Sh</label>
@@ -74,18 +74,20 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label>Rasm</label>
-                        <input type="file" name="studentImg" class="file-upload">
-                        <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                          <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary py-3" type="button">tanlash</button>
-                          </span>
-                        </div>
+                        <label for="exampleSelectGender">Guruh nomi</label>
+                        <select name="group_name"  class="form-select" id="exampleSelectGender">
+                            @foreach ($groups as $group )
+                            <option value="{{$group->id}}">{{$group->g_name}}</option>
+                            @endforeach
+
+                        </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">Sinf:</label>
-                        <input name="studentGroup" type="text" class="form-control" id="exampleInputName1" placeholder="Sinf:">
+                        <label for="exampleInputName1">Guruh:</label>
+                        <input name="studentGroup" type="text" class="form-control" id="exampleInputName1" placeholder="Guruh:">
+                      </div><div class="form-group">
+                        <label for="exampleInputName1">Tug'ilgan sana:</label>
+                        <input name="t_sana" type="date" class="form-control" id="exampleInputName1" placeholder="t_sana:">
                       </div>
 
                       <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>

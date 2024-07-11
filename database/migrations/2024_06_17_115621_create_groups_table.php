@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('g_name');
             $table->string('g_money');
-            $table->integer('tech_id');
+            $table->bigInteger('tech_id');
             $table->timestamps();
         });
     }

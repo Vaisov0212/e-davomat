@@ -1,4 +1,4 @@
-
+{{$title='jadval'}}
 
 @include('admin.layouts.header')
 {{-- @yield('cdn_contentd') --}}
@@ -11,23 +11,23 @@
     <div class="main-panel">
         <div class="content-wrapper">
           <div class="page-header">
-            <h3 class="page-title">O'quvchilar</h3>
+            <h3 class="page-title">O'qituvchilar</h3>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('admin.student.create')}}">Yangi O'quvchi</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.teachers.create')}}">Yangi O'qituvchi</a></li>
               </ol>
             </nav>
           </div>
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Barcha o'quvchilar ro'yxati</h4>
-              <div class="row overflow-auto">
+              <h4 class="card-title">O'qituvchilar</h4>
+              <div class="row">
                 <div class="col-12">
-                  <table id="order-listing" class="table" cellspacing="0" width="100%">
+                  <table id="order-listing" class="table">
                     <thead>
-                      <tr class="bg-primary text-white">
+                      <tr>
                         <th>id</th>
-                        <th>studentFish</th>
+                        <th>t_fish</th>
                         <th>action</th>
                       </tr>
                     </thead>
@@ -46,11 +46,11 @@
                     processing : true,
                     serverSide : true,
                     ajax : {
-                        url : "{{ route('admin.student.index') }}",
+                        url : "{{ route('admin.teachers.index') }}",
                     },
                     columns : [
                         {data : 'id', name : 'id'  },
-                        {data : 'studentFish', name : 'studentFish'},
+                        {data : 't_fish', name : 't_fish'},
                         {data : 'action', name : 'action',orderable:false, searchable:false }
                     ]
                 });

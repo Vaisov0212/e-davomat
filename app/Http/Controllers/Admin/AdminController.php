@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\Teacher;
+use  Datatables;
 
 class AdminController extends Controller
 {
@@ -19,6 +21,15 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function ajax(){
+        return view('admin.teacher.t_index');
+    }
+
+    public function getData(){
+        $data=Teacher::select('id','t_fish');
+        return Datatables::of($data)->make(true);
+    }
     public function create()
     {
         //

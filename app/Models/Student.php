@@ -14,8 +14,11 @@ class Student extends Model
     protected $fillable=[
         'card_id',
         'studentFish',
-        'studentImg',
+        'st_sana',
         'studentGroup',
         'genderType'
     ];
+    public function s_groups(){
+        return $this->belongsToMany(Group::class);
+    }
 }

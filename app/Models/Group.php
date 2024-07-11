@@ -15,5 +15,10 @@ class Group extends Model
                  'g_money',
                  'tech_id'
                         ];
-
+     public function teacher(){
+      return $this->belongsTo(Teacher::class,'tech_id','id');
+    }
+    public function student(){
+        return $this->belongsToMany(Student::class);
+    }
 }
