@@ -18,6 +18,9 @@ class Group extends Model
      public function teacher(){
       return $this->belongsTo(Teacher::class,'tech_id','id');
     }
+    public function lesson(){
+        return $this->belongsToMany(Lesson::class);
+    }
     public function student(){
         return $this->belongsToMany(Student::class);
     }

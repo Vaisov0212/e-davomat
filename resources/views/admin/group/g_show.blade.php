@@ -99,7 +99,7 @@
                                 </div>
                               </div>
                               <div class="tab-pane fade" id="pills-music" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                 <table id="order-listing" class="table" cellspacing="0" width="100%">
+                                 <table id="order-listing" class="table " cellspacing="0" width="100%" style="text-align: center">
                                         <thead>
                                           <tr class="bg-primary text-white">
                                             <th>id</th>
@@ -108,6 +108,15 @@
                                           </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($group->student as $item )
+                                            <tr>
+                                                <td>{{$item->id}}</td>
+                                                <td><b><a class="text-info" href="{{route('admin.student.show',$item->id)}}">{{$item->studentFish}}</a></b></td>
+                                                <td>     <button class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye" ></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="mdi mdi-pencil" ></i></button></td>
+                                            </tr>
+
+                                            @endforeach
                                         </tbody>
                                       </table>
                               </div>
@@ -157,8 +166,20 @@
               </div>
             </div>
 
-
-
+            {{-- <script type="text/javascript" >
+            $.(function(){
+                var $table=$('#order-listing').DataTable({
+                    processing:true,
+                    serverSide:true,
+                    ajax:{
+                        url : "{{route('admin.groups.show',1)}}"
+                    },
+                    columns:[
+                        {data:'id',name:'id'},
+                    ]
+                });
+            });
+            </script> --}}
             <!-- content-wrapper ends -->
 
             <!-- content-wrapper ends -->

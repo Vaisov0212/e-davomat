@@ -21,9 +21,10 @@ class TeacherController extends Controller
             return DataTables::of($data)
             ->addColumn('action',function($data){
                 return '<form   action="'.route('admin.teachers.show', $data->id).'" enctype="multipart/form-data" method="get">
-                   <button type="submit" class="btn btn-inverse-danger btn-icon">
-                    <i class="mdi mdi-email-open"></i>
+                   <button type="submit" class="btn btn-inverse-light btn-icon">
+                    <i class="mdi mdi-eye text-primary"></i>
                     </button>
+                      <button type="button" id="'.$data->id.'" class="btn btn-inverse-light btn-icon delete" >  <i class="mdi mdi-delete text-danger"></i></button>
                     </form>';
             })->addIndexColumn()->make(true);
         }
@@ -87,7 +88,12 @@ class TeacherController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // $data=Teacher::findOrFail($id);
+
+        if($id)
+        {
+            echo 'success';
+        }
     }
 
     /**
@@ -103,8 +109,13 @@ class TeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        $teacher=Teacher::findOrFail($id);
-        $teacher->delete();
-        return redirect()->back()->with('success','Ma`lumot o`chirildi');
+
+        $teacher=Teacher::find($request->input('id'));
+
+        if( $teacher->delete()){
+            echo 'data delete';
+        }
+        // return redirect()->back()->with('success','Ma`lumot o`chirildi');
     }
+
 }

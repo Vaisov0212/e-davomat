@@ -55,8 +55,8 @@ class GroupController extends Controller
      */
     public function show(string $id)
     {
-        $group=Group::findOrfail($id);
 
+        $group=Group::findOrfail($id);
         return view('admin.group.g_show',compact('group'));
     }
 

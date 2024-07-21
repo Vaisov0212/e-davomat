@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
+// use App\Models\Lessson;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 use  DataTables;
 class AjaxController extends Controller
 {
     public function index(Request $request)
     {
+
+        $data = Lesson::select('*');
+
         if($request->ajax())
         {
-            $data = Teacher::select('*');
+            $data = Lesson::select('*');
 
-            return DataTables::of($data)->addIndexColumn()->make(true);
+            return DataTables::of($data)  ->addColumn('intro', function(Lesson $data) {
+                return $data->groups->g_name ;
+            })->addIndexColumn()->make(true);
         }
         return view('index');
     }

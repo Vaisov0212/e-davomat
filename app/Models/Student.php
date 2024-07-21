@@ -21,4 +21,10 @@ class Student extends Model
     public function s_groups(){
         return $this->belongsToMany(Group::class);
     }
+    public function attendance(){
+        return $this->belongsToMany(Attendance::class);
+    }
+    public function davomat(){
+        return $this->belongsToMany(Davomat::class, 'id', 'student_id');
+    }
 }

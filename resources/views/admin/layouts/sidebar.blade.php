@@ -29,7 +29,7 @@
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-                <a class="nav-link"   href="{{route('admin.teachers.index')}}">Badges</a>
+                <a class="nav-link"   href="{{route('admin.teachers.index')}}">O'qituvchilar ro'yxati</a>
               </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.teachers.create')}}">Qo'shish</a>

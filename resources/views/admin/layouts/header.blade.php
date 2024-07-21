@@ -21,6 +21,9 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin/images/favicon.png')}}" />
+
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
     <!-- End layout styles -->
     {{-- @if($title=='jadval') --}}
     <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" defer rel="stylesheet">

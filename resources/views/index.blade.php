@@ -37,9 +37,9 @@
                 <table class="table table-bordered" id="daterange_table">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>lessonData</th>
+                            <th>lessonTime</th>
+                            <th>id</th>
 
                         </tr>
                     </thead>
@@ -57,13 +57,12 @@ $(function () {
         processing : true,
         serverSide : true,
         ajax : {
-            url : "{{ route('ajax') }}",
+            url : "{{ route('ajax')}}",
         },
         columns : [
-
-            {data : 't_fish', name : 't_fish'},
-            {data : 't_gendr', name : 't_gendr'},
-            {data : 't_img', name : 't_img'}
+            {data : 'lessonData', name : 'lessonData'},
+            {data : 'lessonTime', name : 'lessonTime'},
+            {data : 'intro', name : 'id'}
 
         ]
     });

@@ -19,6 +19,8 @@
 <script src="{{asset('admin/vendors/chart.js/chart.umd.js')}}"></script>
 <script src="{{asset('admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <!-- End plugin js for this page -->
+<script src="{{asset('admin/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+<script src="{{asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
 <!-- inject:js -->
 <script src="{{asset('admin/js/off-canvas.js')}}"></script>
 <script src="{{asset('admin/js/misc.js')}}"></script>
@@ -26,6 +28,12 @@
 <script src="{{asset('admin/js/todolist.js')}}"></script>
 <script src="{{asset('admin/js/jquery.cookie.js')}}"></script>
 <!-- endinject -->
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+
+<script src="{{asset('admin/js/hoverable-collapse.js')}}"></script>
+
 <!-- Custom js for this page -->
 {{-- <script src="{{asset('admin/js/dashboard.js')}}"></script> --}}
 <!-- End custom js for this page -->
