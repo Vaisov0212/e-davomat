@@ -44,6 +44,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link"  href="{{route('admin.lessons.index')}}" aria-expanded="false" aria-controls="icons">
+          <span class="menu-title">Darslar</span>
+          <i class="mdi mdi-clipboard-check menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
           <span class="menu-title">O'quvchilar</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>

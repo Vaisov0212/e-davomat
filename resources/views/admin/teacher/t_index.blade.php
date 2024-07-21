@@ -1,14 +1,13 @@
-{{ $title = 'jadval' }}
 
 @include('admin.layouts.header')
 {{-- @yield('cdn_contentd') --}}
 <!-- partial:partials/_navbar.html -->
-@include('admin.layouts.navbar')
-<div class="container-fluid page-body-wrapper">
-    <!-- partial:partials/_sidebar.html -->
-    @include('admin.layouts.sidebar')
-    {{--  --}}
-    <div class="main-panel">
+    @include('admin.layouts.navbar')
+    <div class="container-fluid page-body-wrapper">
+         <!-- partial:partials/_sidebar.html -->
+        @include('admin.layouts.sidebar')
+        {{--  --}}
+      <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
                 <h3 class="page-title">O'qituvchilar </h3>
@@ -24,12 +23,12 @@
                     <h4 class="card-title">O'qituvchilar Ro'yxati</h4>
                     <div class="row">
                         <div class="col-12">
-                            <table id="order-listing" class="table table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>t_fish</th>
-                                        <th>action</th>
+                            <table id="order-listing" class="table table-responsive" style="width: 100%;text-align: center " >
+                                <thead  >
+                                    <tr >
+                                        <th style="text-align: center">id</th>
+                                        <th style="text-align: center">F.I.Sh</th>
+                                        <th style="text-align: center">amallar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,42 +68,22 @@
         <script type="text/javascript">
             $(function() {
                 var table = $('#order-listing').DataTable({
+                    scrollX:true,
                     processing: true,
                     serverSide: true,
                     ajax: {
                         url: "{{ route('admin.teachers.index') }}",
                     },
                     columns: [{
-                            data: 'id',
-                            name: 'id'
+                            data: 'id', name: 'id'
                         },
                         {
-                            data: 't_fish',
-                            name: 't_fish'
+                            data: 't_fish', name: 't_fish'
                         },
                         {
-                            data: 'action',
-                            name: 'action',
-                            orderable: false,
-                            searchable: false
+                            data: 'action',name: 'action',orderable: false,searchable: false
                         }
                     ]
-                });
-
-                $('#order-listing').on('click', '.delete', function(event) {
-                    event.preventDefault();
-                    var id = $(this).attr('id');
-                    $.ajax({
-                        // url:'teachers/'+id,
-                        url: "{{ route('admin.teachers.index') }}/" + id,
-                        mehtod: "get",
-                        // data:{id:id},
-                        success: function(data) {
-                            // alert(data);
-                            // $('#student_table').DataTable().ajax.reload();
-                            $('.delete').html('<a class="btn btn-sm btn-success">yes</a>');
-                        }
-                    })
                 });
 
             });

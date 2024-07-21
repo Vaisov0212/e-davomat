@@ -43,7 +43,7 @@
                             </ul>
                             <div class="tab-content tab-content-custom-pill" id="pills-tabContent">
                               <div class="tab-pane fade show active" id="pills-health" role="tabpanel" aria-labelledby="pills-home-tab">
-                                      <table class="table">
+                                      <table class="table table-scroll">
                                         <thead>
                                           <tr>
                                             <th>F.I.Sh</th>
