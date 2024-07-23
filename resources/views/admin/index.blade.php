@@ -4,7 +4,6 @@
          <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
         @include('admin.layouts.sidebar')
-    {{--  --}}
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
@@ -24,11 +23,11 @@
             </div>
           </div>
 
-
-
-
-
-
-
           <!-- content-wrapper ends -->
 @include('admin.layouts.footer')
+
+
+
+
+
+
