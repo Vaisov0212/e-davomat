@@ -5,6 +5,6 @@ if (isset($_GET['card_uid']) && isset($_GET['device_token'])){
 
 	$UIDresult=$card_uid;
 	$Write="<?php $" . "UIDresult='" . $UIDresult . "'; " . "echo $" . "UIDresult;" . " ?>";
-	file_put_contents('resources/views/UIDContainer.blade.php',$Write);
+	file_put_contents('UIDContainer.php',$Write);
 }
 ?>

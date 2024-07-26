@@ -1,21 +1,18 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Group;
-use App\Models\User;
 
-class GroupController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-            $groups=Group::all();
-            // dd($groups);
-            return view('admin.group.g_index',compact('groups'));
+        //
     }
 
     /**
@@ -23,10 +20,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        // $teacher=Teacher::find(2)->group();
-        // dd($teacher);
-        $teachers=User::all();
-        return view('admin.group.g_create',compact('teachers'));
+        //
     }
 
     /**
@@ -34,20 +28,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'=>'required',
-            'money'=>'required',
-            'teacher'=>'required'
-        ]);
-
-        $groups=new Group([
-            'g_name'=> $request->post('name'),
-            'g_money'=>$request->post('money'),
-            'tech_id'=>$request->post('teacher')
-        ]);
-        $groups->save();
-        return redirect()->back()->with('success','Guruh yaratildi !');
-
+        //
     }
 
     /**
@@ -55,9 +36,7 @@ class GroupController extends Controller
      */
     public function show(string $id)
     {
-
-        $group=Group::findOrfail($id);
-        return view('admin.group.g_show',compact('group'));
+        //
     }
 
     /**

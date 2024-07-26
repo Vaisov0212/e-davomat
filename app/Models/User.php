@@ -21,6 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'position',
+        'user_image',
+        'user_tel',
+        'user_gendr',
+        'user_t_sana',
+        'user_addres',
     ];
 
     /**
@@ -42,4 +48,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function group(){
+        return $this->hasMany(Group::class,'tech_id','id');
+    }
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
 }

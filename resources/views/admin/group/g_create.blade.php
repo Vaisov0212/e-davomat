@@ -56,7 +56,7 @@
                         <label for="exampleSelectGender">Mentor</label>
                         <select name="teacher"  class="form-select" id="exampleSelectGender">
                             @foreach ($teachers as $item )
-                            <option value="{{$item->id}}">{{$item->t_fish}}</option>
+                            <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>
                       </div>

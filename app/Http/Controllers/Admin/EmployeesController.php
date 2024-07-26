@@ -1,11 +1,11 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Group;
-use App\Models\User;
-
-class GroupController extends Controller
+use App\Models\Teacher;
+class EmployeesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,22 @@ class GroupController extends Controller
     public function index()
     {
 
-            $groups=Group::all();
-            // dd($groups);
-            return view('admin.group.g_index',compact('groups'));
+        if($request->ajax())
+        {
+            $data = Teacher::select('*');
+            // dd($data);
+            return DataTables::of($data)
+            ->addColumn('action',function($data){
+                return '<form   action="'.route('admin.teachers.show', $data->id).'" enctype="multipart/form-data" method="get">
+                   <button type="submit" class="btn btn-inverse-light btn-icon">
+                    <i class="mdi mdi-eye text-primary"></i>
+                    </button>
+                      <button type="button" id="'.$data->id.'" class="btn btn-inverse-light btn-icon delete" >  <i class="mdi mdi-delete text-danger"></i></button>
+                    </form>';
+            })->addIndexColumn()->make(true);
+        }
+
+        return view('admin.teacher.t_index');
     }
 
     /**
@@ -23,10 +36,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        // $teacher=Teacher::find(2)->group();
-        // dd($teacher);
-        $teachers=User::all();
-        return view('admin.group.g_create',compact('teachers'));
+        //
     }
 
     /**
@@ -34,20 +44,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'=>'required',
-            'money'=>'required',
-            'teacher'=>'required'
-        ]);
-
-        $groups=new Group([
-            'g_name'=> $request->post('name'),
-            'g_money'=>$request->post('money'),
-            'tech_id'=>$request->post('teacher')
-        ]);
-        $groups->save();
-        return redirect()->back()->with('success','Guruh yaratildi !');
-
+        //
     }
 
     /**
@@ -55,9 +52,7 @@ class GroupController extends Controller
      */
     public function show(string $id)
     {
-
-        $group=Group::findOrfail($id);
-        return view('admin.group.g_show',compact('group'));
+        //
     }
 
     /**

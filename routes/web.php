@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\DavomatController;
+use App\Http\Controllers\Admin\EmployeesController;
 use App\Http\Controllers\AjaxController;
 
 /*
@@ -33,6 +34,7 @@ Route::prefix('/dashboard')->name('admin.')->middleware('auth')->group(function(
     });
     Route::resource('student',StudentController::class);
     Route::resource('groups', GroupController::class);
+    Route::resource('users', EmployeesController::class);
     Route::resource('teachers', TeacherController::class);
     Route::resource('lessons', LessonController::class);
     Route::resource('attendance', DavomatController::class);
