@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -51,28 +52,31 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-                $this->validate($request,[
-                        'card_id'=>'required',
-                        'studentName'=>'required',
-                        't_sana'=>'required',
-                        'studentGroup'=>'required',
-                         'genderType' =>'required'
-                ]);
+
+        $this->validate($request,[
+                'card_id'=>'required',
+                'studentName'=>'required',
+                't_sana'=>'required',
+                'tel'=>'required',
+                'genderType' =>'required',
+                 'group_name' =>'required'
+        ]);
+        $student= new Student([
+            'card_id' => $request->get('card_id'),
+            'studentFish'=> $request->get('studentName'),
+            'st_sana'=>$request->get('t_sana'),
+            'studentGroup'=>$request->get('studentGroup'),
+            'genderType' =>$request->get('genderType'),
+            'tel' =>$request->get('tel')
+        ]);
+        $student->save();
+
+            $g_id=$request->get('group_name');
+            $student->s_groups()->attach($g_id);
 
 
-                $student= new Student([
-                    'card_id' => $request->get('card_id'),
-                    'studentFish'=> $request->get('studentName'),
-                    'st_sana'=>$request->get('t_sana'),
-                    'studentGroup'=>$request->get('studentGroup'),
-                     'genderType' =>$request->get('genderType')
-                ]);
-                $student->save();
-                $g_id=$request->get('group_name');
-                $student->s_groups()->attach($g_id);
 
-                return redirect()->route('admin.student.create')->with('success',"malumot saqlandi");
+        return redirect()->route('admin.student.create')->with('success',"malumot saqlandi");
     }
 
     /**
@@ -80,8 +84,9 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
+        $groups_all=Group::all();
         $student=Student::findOrFail($id);
-        return view('admin.student.s_show',compact('student'));
+        return view('admin.student.s_show',compact('student','groups_all'));
     }
 
     /**

@@ -15,9 +15,12 @@ class Student extends Model
         'card_id',
         'studentFish',
         'st_sana',
-        'studentGroup',
-        'genderType'
+        'genderType',
+        'tel'
     ];
+    protected $casts = [
+        'st_sana'=>'date:m-d-Y'
+     ];
     public function s_groups(){
         return $this->belongsToMany(Group::class);
     }

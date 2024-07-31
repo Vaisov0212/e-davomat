@@ -1,8 +1,7 @@
-{{$title='jadval'}}
+
 @include('admin.layouts.header')
      <!-- partial:partials/_navbar.html -->
-
-         @include('admin.layouts.navbar')
+      @include('admin.layouts.navbar')
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
@@ -40,7 +39,7 @@
                                 <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-vibes" role="tab" aria-controls="pills-contact" aria-selected="false"> Vibes </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-energy" role="tab" aria-controls="pills-contact" aria-selected="false"> Energy </a>
+                                {{-- <a class="nav-link"  href="{{route('admin.addStudent',$group->id)}}" > yangi o'quvchi </a> --}}
                               </li>
                             </ul>
                             <div class="tab-content tab-content-custom-pill" id="pills-tabContent">
@@ -63,39 +62,43 @@
                                       </tr>
                                       <tr>
                                         <td>Mentor:</td>
-                                        <td><b>{{$group->teacher->t_fish}}</b></td>
+                                        <td><b>{{$group->teacher->name}}</b></td>
                                      </tr>
                                   </tbody>
                                   </table>
-
-
                               </div>
                               <div class="tab-pane fade" id="pills-career" role="tabpanel" aria-labelledby="pills-profile-tab">
                                 <div class="tab-pane fade show active" id="pills-health" role="tabpanel" aria-labelledby="pills-home-tab">
 
-                                <form enctype="multipart/form-data" action="{{route('admin.groups.store')}}" method="POST"  class="forms-sample">
-                                    @method('POST')
+                                <form id="form-update" enctype="multipart/form-data" action="{{route('admin.groups.update',$group->id)}}" method="POST"  class="forms-sample">
+                                    @method('PATCH')
                                     @csrf
+                                    <div class="form-group">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" id="tasdiqlash" value="0" class="form-check-input-Warning"> Tahrirlashni tasdiqlash </label>
+                                        </div>
+                                    </div>
+                                    <p class="text-dark" id="info-text" ></p>
                                   <div class="form-group">
-                                    <label for="exampleInputName1">Guruh nomi:</label>
-                                    <input id="getUID" value="{{$group->g_name}}"  name="name" type="text" class="form-control" placeholder="to'liq nom:">
-
+                                    <label for="input-name">Guruh nomi:</label>
+                                    <input id="input-name" disabled value="{{$group->g_name}}"  name="name" type="text" class="form-control confirm" placeholder="to'liq nom:" required>
                                   </div>
                                   <div class="form-group">
-                                    <label for="exampleInputName1">Kurs Narhi</label>
-                                    <input name="money" value="{{$group->g_money}}" type="text" class="form-control" id="exampleInputName1" placeholder="250 ming som:">
+                                    <label for="input-money">Kurs Narhi</label>
+                                    <input id="input-money" disabled name="money" value="{{$group->g_money}}" type="text" class="form-control confirm"  placeholder="250 ming som:" required>
                                   </div>
                                   <div class="form-group">
-                                    <label for="exampleSelectGender">Mentor</label>
-                                    <select name="teacher" value="{{$group->teacher->t_fish}}"  class="form-select" id="exampleSelectGender">
-                                        {{-- @foreach ($teachers as $item )
-                                        <option value="{{$item->id}}">{{$item->t_fish}}</option>
-                                        @endforeach --}}
+                                    <label for="input-teacher">Mentor</label>
+                                    <select id="input-teacher"  disabled name="teacher" value="{{$group->teacher->name}}"  class="form-select text-dark confirm" required>
+                                        @foreach ($teachers as $item )
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
                                     </select>
                                   </div>
-                                  <button type="submit" class="btn btn-gradient-primary me-2">yaratish</button>
-                                  <button type="reset" class="btn btn-danger">tozalash</button>
+                                  <button disabled type="submit" class="btn  btn-info  confirm ">saqlash</button>
                                 </form>
+
                                 </div>
                               </div>
                               <div class="tab-pane fade" id="pills-music" role="tabpanel" aria-labelledby="pills-contact-tab">
@@ -115,7 +118,6 @@
                                                 <td>     <button class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye" ></i></button>
                                                     <button class="btn btn-sm btn-outline-danger"><i class="mdi mdi-pencil" ></i></button></td>
                                             </tr>
-
                                             @endforeach
                                         </tbody>
                                       </table>
@@ -133,29 +135,21 @@
                                         <tr>
                                             <td style="text-align: left"> <i class="mdi mdi-account  text-primary"></i></td>
                                             <td>{{$item->studentFish}}</td>
-                                            <td style="text-align: right"> <a  class="btn btn-light btn-sm">
-                                                <i class="mdi mdi-eye text-primary"></i>
-                                            </a>
-                                                <a  class="btn btn-light btn-sm">
-                                                    <i class="mdi mdi-account-multiple-minus text-danger"></i>
-                                                </a>
+                                            <td style="text-align: right">
+                                              <form class="form-log" action="{{route('admin.student_log')}}" method="post" enctype="multipart/form-data" >
+                                                @method('PATCH')
+                                                @csrf
+                                             <input name="student_id" type="hidden" value="{{$item->id}}">
+                                             <input name="group_id" type="hidden" value="{{$group->id}}">
+                                              <button type="submit" class="btn btn-light btn-sm">
+                                                  <i class="mdi mdi-account-multiple-minus text-danger"></i>
+                                              </button>
+                                              </form>
                                             </td>
-
                                         </tr>
                                         @endforeach
-
                                     </tbody>
                                     </table>
-
-
-                              </div>
-                              <div class="tab-pane fade" id="pills-energy" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                <div class="media">
-                                  <img class="me-3 w-25 rounded" src="../../../assets/images/samples/300x300/11.jpg" alt="sample image" />
-                                  <div class="media-body">
-                                    <p> Finding a needle in a haystack isn't hard when every straw is computerized. You're a killer. I catch killers. I will not kill my sister. I will not kill my sister. I will not kill my sister. Rorschach would say you have a hard time relating to others. </p>
-                                  </div>
-                                </div>
                               </div>
                             </div>
                           </div>
@@ -165,21 +159,57 @@
                   </div>
               </div>
             </div>
+            <script>
+              $('.form-log').submit(function(e){
+                  e.preventDefault();
+                  $.ajax({
+                    url:$(this).attr('action'),
+                    dataType:'JSON',
+                    method:'PATCH',
+                    data:$(this).serialize(),
+                    success:function(responce){
 
-            {{-- <script type="text/javascript" >
-            $.(function(){
-                var $table=$('#order-listing').DataTable({
-                    processing:true,
-                    serverSide:true,
-                    ajax:{
-                        url : "{{route('admin.groups.show',1)}}"
                     },
-                    columns:[
-                        {data:'id',name:'id'},
-                    ]
+                    error: function(){
+
+                    }
+                  });
+              });
+              $('form').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                  url:$(this).attr('action'),
+                  dataType:'JSON',
+                  method:'PATCH',
+                  data:$(this).serialize(),
+                  success: function(response){
+                    if(response.status){
+                      $('#info-text').text('malumotlar yangilandi');
+                      $('#info-text').prop('class','text-info');
+                    }
+                  },
+                  error:function(xhr){
+                    $('#info-text').text('xatolik ma`lumotlari to`g`ri to`ldirilganligiga ishonch hosil qiling !');
+                      $('#info-text').prop('class','text-danger');
+                    }
                 });
-            });
-            </script> --}}
+
+              });
+            </script>
+            <script type="text/javascript" >
+                     $('#tasdiqlash').click(function(){
+                        var confirm=$('#tasdiqlash').attr('value');
+
+                        if(confirm==0){
+                            $('.confirm').prop('disabled',false);
+                            $('#tasdiqlash').attr('value',1);
+                        }
+                        else{
+                            $('.confirm').prop('disabled',true);
+                            $('#tasdiqlash').attr('value',0);
+                        }
+                     });
+            </script>
             <!-- content-wrapper ends -->
 
             <!-- content-wrapper ends -->

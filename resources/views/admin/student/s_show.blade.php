@@ -6,146 +6,165 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         @include('admin.layouts.sidebar')
-
         <!-- partial -->
         <div class="main-panel">
-            <div class="content-wrapper">
-              <div class="page-header">
-                <h3 class="page-title"> Profile </h3>
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Sample Pages</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">Custom pills</h4>
-                        <p class="card-description"> Add class <code>.nav-pills-custom</code> and <code>.tab-content-custom-pill</code> to <code>.nav-pills</code> and <code>.tab-content</code>
-                        </p>
-                        <div class="row">
-                          <div class="col-md-10 mx-auto">
-                            <ul class="nav nav-pills nav-pills-custom" id="pills-tab" role="tablist">
-                              <li class="nav-item">
-                                <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" href="#pills-health" role="tab" aria-controls="pills-home" aria-selected="true"> Health </a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" href="#pills-career" role="tab" aria-controls="pills-profile" aria-selected="false"> Career </a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-music" role="tab" aria-controls="pills-contact" aria-selected="false"> Music </a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-vibes" role="tab" aria-controls="pills-contact" aria-selected="false"> Vibes </a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-energy" role="tab" aria-controls="pills-contact" aria-selected="false"> Energy </a>
-                              </li>
-                            </ul>
-                            <div class="tab-content tab-content-custom-pill" id="pills-tabContent">
-                              <div class="tab-pane fade show active" id="pills-health" role="tabpanel" aria-labelledby="pills-home-tab">
-                                <div class="d-flex mb-4">
-                                  <img src="{{asset('admin/images/samples/300x300/12.jpg')}}" class="w-25 h-100 rounded" alt="sample image" />
-                                </div>
-
-                                      <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th>F.I.Sh</th>
-                                            <th>{{$student->studentFish}}</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($student->s_groups as $item )
-                                              <tr>
-                                                <td><b>Kurs nomi:</b></td>
-                                                <td><b>{{$item->g_name}}</b></td>
-                                              </tr>
-
-
-                                            @endforeach
-
-                                        </tbody>
-                                      </table>
-
-                              </div>
-                              <div class="tab-pane fade" id="pills-career" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                <div class="media">
-                                  <img class="me-3 w-25 rounded" src="../../../assets/images/samples/300X300/10.jpg" alt="sample image" />
-                                  <div class="media-body">
-                                    <p> I'm thinking two circus clowns dancing. You? Finding a needle in a haystack isn't hard when every straw is computerized. Tell him time is of the essence. Somehow, I doubt that. You have a good heart, Dexter. </p>
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Profile </h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Sample Pages</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="border-bottom text-center pb-4">
+                          <img src="{{asset('admin/images/user0.jpg')}}" alt="profile" class="img-lg rounded-circle mb-3" />
+                          <p>Bureau Oberhaeuser is a design bureau focused on Information- and Interface Design. </p>
+                          <div class="d-flex justify-content-between">
+                            <button class="btn btn-gradient-success">Hire Me</button>
+                            <button class="btn btn-gradient-success">Follow</button>
+                          </div>
+                        </div>
+                        <div class="border-bottom py-4">
+                          <p>Guruhlarda:</p>
+                          <div>
+                            @foreach ($student->s_groups as $group )
+                            <label class="badge badge-outline-dark my-1">{{$group->g_name}}</label>
+                            @endforeach
+                          </div>
+                        </div>
+                        <div class="py-4">
+                          <p class="clearfix">
+                            <span class="float-start"> F.I.Sh: </span>
+                            <span class="float-end text-dark"><b> {{$student->studentFish}}</b> </span>
+                          </p>
+                          <p class="clearfix">
+                            <span class="float-start"> Jinsi: </span>
+                            <span class="float-end text-dark"> {{$student->genderType}} </span>
+                          </p>
+                          <p class="clearfix">
+                            <span class="float-start"> Tel: </span>
+                            <span class="float-end text-dark">+998 {{" ".$student->tel}} </span>
+                          </p>
+                          <p class="clearfix">
+                            <span class="float-start"> Tug'ilgan sana: </span>
+                            <span class="float-end text-dark">
+                              <a >{{$student->st_sana->format('d-m-Y')}}</a>
+                            </span>
+                          </p>
+                          <p class="clearfix">
+                            <span class="float-start"> card id: </span>
+                            <span class="float-end text-dark">
+                              <a>{{$student->card_id}}</a>
+                            </span>
+                          </p>
+                        </div>
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-gradient-primary btn-block">Preview</button>
+                        </div>
+                      </div>
+                      <div class="col-lg-8">
+                        <div class="d-flex justify-content-between">
+                          <div>
+                            <h3>{{$student->studentFish}}</h3>
+                          </div>
+                          <div>
+                            <button class="btn btn-outline-secondary btn-icon">
+                              <i class="mdi mdi-comment-processing"></i>
+                            </button>
+                            <button class="btn btn-gradient-primary">Request</button>
+                          </div>
+                        </div>
+                        <div class="mt-4 py-2 border-top border-bottom">
+                          <ul class="nav profile-navbar">
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">
+                                <i class="mdi mdi-account-outline"></i> Info </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" href="#">
+                                <i class="mdi mdi-newspaper"></i> Feed </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">
+                                <i class="mdi mdi-calendar"></i> Agenda </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">
+                                <i class="mdi mdi-attachment"></i> Resume </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="profile-feed">
+                        <table class="table order-table">
+                            <tbody>
+                                <tr><th></th></tr>
+                                <tr><th></th></tr>
+                                <tr><th></th></tr>
+                                <tr><th></th></tr>
+                            </tbody>
+                            <thead>
+                                <tr><td></td></tr>
+                                <tr><td></td></tr>
+                                <tr><td></td></tr>
+                                <tr><td></td></tr>
+                            </thead>
+                        </table>
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title"></h4>
+                                <p class="card-description text-dark">Yangi guruhga biriktrish </p>
+                                <form  action="{{route('admin.add_student_group')}}" method="POST" enctype="multipart/form-data" >
+                                  @csrf
+                                <div class="form-group row">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                        <input type="checkbox" id="check-add" value="0" class="form-check-input"> Rozilik bildirish </label>
+                                        <input name="student_id" type="hidden" value="{{$student->id}}">
+                                    </div>
+                                  <div class="col">
+                                    <label class="text-danger" >guruhni tanlang !</label>
+                                    <div id="the-basics">
+                                      <select name="group_id" class="typeahead form-select" disabled  type="text" placeholder="States of USA">
+                                        @foreach ($groups_all as $group )
+                                            <option value="{{$group->id}}">{{$group->g_name}}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col">
+                                    <label> </label>
+                                    <div id="bloodhound">
+                                      <button type="submit"  disabled class="typeahead form-input btn btn-outline-info" type="text" >qo'shish</button>
+                                    </div>
                                   </div>
                                 </div>
+                              </form>
+                              @if (count($errors)>0)
+                                <ul class="alert alert-danger">
+                                    @foreach ($errors as $error )
+                                       <li > {{$error}}</li>
+                                    @endforeach
+                                </ul>
+                              @endif
+                              @if (\Session::has('message'))
+                              <div class="alert alert-warning">
+                                <input id="alert-message" type="hidden" value="{{\Session::get('message')}}" >
                               </div>
-                              <div class="tab-pane fade" id="pills-music" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                <div class="media">
-                                  <img class="me-3 w-25 rounded" src="{{asset('admin/images/samples/300x300/14.jpg')}}" alt="sample image" />
-                                  <div class="media-body">
-                                    <table class="table">
-                                        <thead>
-                                          {{-- <tr>
-                                            <th>F.I.Sh</th>
-                                            <th>{{$teacher->t_fish}}</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <td>Gendr</td>
-                                            <td><b>{{$teacher->t_gendr}}</b></td>
-                                          </tr>
-                                          <tr>
-                                            <td>Tug'ilgan sana:</td>
-                                            <td><b>{{$teacher->t_sana}}</b></td>
-                                          </tr>
-                                          <tr>
-                                            <td>Yaratilgan:</td>
-                                            <td><b>{{$teacher->created_at}}</b></td>
-                                          </tr>
-                                          <tr>
-                                            <td>Tel:</td>
-                                            <td><b>{{$teacher->t_tel}}</b></td>
-                                          </tr>
-                                          <tr>
-                                            <td>E-mail:</td>
-                                            @if ($teacher->t_email=="")
-                                            <td>-</td>
-                                            @endif
-                                            <td><b>{{$teacher->t_email}}</b></td>
-                                          </tr>
-                                          <tr>
-                                            <td>Manzil:</td>
-                                                @if ($teacher->t_addres=="")
-                                                <td>-</td>
-                                                @endif
-                                            <td><b>{{$teacher->t_addres}}</b></td>
-
-                                          </tr>
- --}}
-
-
-                                        </tbody>
-                                      </table>
-                                  </div>
-                                </div>
+                              @endif
+                              @if (\Session::has('success'))
+                              <div class="alert alert-success">
+                                <p>{{\Session::get('success')}}</p>
                               </div>
-                              <div class="tab-pane fade" id="pills-vibes" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                <div class="media">
-                                  <img class="me-3 w-25 rounded" src="../../../assets/images/samples/300x300/15.jpg" alt="sample image" />
-                                  <div class="media-body">
-                                    <p> This man is a knight in shining armor. I feel like a jigsaw puzzle missing a piece. And I'm not even sure what the picture should be. Somehow, I doubt that. You have a good heart, Dexter. Keep your mind limber. </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="tab-pane fade" id="pills-energy" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                <div class="media">
-                                  <img class="me-3 w-25 rounded" src="../../../assets/images/samples/300x300/11.jpg" alt="sample image" />
-                                  <div class="media-body">
-                                    <p> Finding a needle in a haystack isn't hard when every straw is computerized. You're a killer. I catch killers. I will not kill my sister. I will not kill my sister. I will not kill my sister. Rorschach would say you have a hard time relating to others. </p>
-                                  </div>
-                                </div>
+                              @endif
                               </div>
                             </div>
                           </div>
@@ -153,10 +172,44 @@
                       </div>
                     </div>
                   </div>
+                </div>
               </div>
             </div>
+          </div>
+          <!-- content-wrapper ends -->
 
+          <script>
+            $(document).ready(function(){
+             var message = $('#alert-message').attr('value');
+                if(message!=null){
+                    alert(message);
+                }
 
+            });
+            // $('form').submit(function(e){}
+            //     e.preventDefault();
+            //     $.ajax(){
+            //         url:$(this).attr('action'),
+            //         dataType:'JSON',
+            //         data:$(this).serialize(),
+            //         success:function(response){
+
+            //         }
+
+            //     }
+            // );
+            $('#check-add').click(function(){
+              var val=$('#check-add').attr('value');
+                if(val==0){
+                    $('.typeahead').prop('disabled',false);
+                    $('#check-add'),atrr('value',1);
+                }
+                else{
+                    $('.typeahead').prop('disabled',true);
+                    $('#check-add'),atrr('value',0);
+                }
+            });
+          </script>
 
 
             <!-- content-wrapper ends -->

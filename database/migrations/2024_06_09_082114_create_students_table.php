@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('card_id');
             $table->string('studentFish');
-            $table->date('st_sana');
-            $table->string('studentGroup');
+            $table->string('st_sana');
+            $table->string('tel');
             $table->string('genderType');
             $table->timestamps();
         });

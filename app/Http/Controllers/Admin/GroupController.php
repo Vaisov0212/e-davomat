@@ -55,9 +55,9 @@ class GroupController extends Controller
      */
     public function show(string $id)
     {
-
+        $teachers=User::all();
         $group=Group::findOrfail($id);
-        return view('admin.group.g_show',compact('group'));
+        return view('admin.group.g_show',compact('group','teachers'));
     }
 
     /**
@@ -65,7 +65,7 @@ class GroupController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -73,7 +73,22 @@ class GroupController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request);
+        $this->validate($request,[
+            'name'=>'required',
+            'money'=>'required',
+            'teacher'=>'required'
+        ]);
+        $group=Group::findOrFail($id);
+        $group->g_name=$request->get('name');
+        $group->g_money=$request->get('money');
+        $group->tech_id=$request->get('teacher');
+        $group->update();
+
+            return response()->json([
+                'status'=>true
+            ]);
+
     }
 
     /**
@@ -83,4 +98,6 @@ class GroupController extends Controller
     {
         //
     }
+
+
 }

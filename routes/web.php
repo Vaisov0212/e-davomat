@@ -1,8 +1,5 @@
 <?php
-
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\GroupController;
@@ -10,7 +7,10 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\DavomatController;
 use App\Http\Controllers\Admin\EmployeesController;
+use App\Http\Controllers\Admin\ImportController;
+use App\Http\Controllers\Admin\AddController;
 use App\Http\Controllers\AjaxController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +33,11 @@ Route::prefix('/dashboard')->name('admin.')->middleware('auth')->group(function(
         return view('admin.index');
     });
     Route::resource('student',StudentController::class);
+    Route::get('/student_import',[ImportController::class,'student_import_index'])->name('studentImport_index');
+    Route::post('/student_import',[ImportController::class,'student_import_file'])->name('studentImport_file');
+    Route::post('/student_add',[AddController::class,'group_student_add'])->name('add_student_group');
+    Route::patch('/student_log',[AddController::class, 'group_student_logaut'])->name('student_log');
+
     Route::resource('groups', GroupController::class);
     Route::resource('users', EmployeesController::class);
     Route::resource('teachers', TeacherController::class);
